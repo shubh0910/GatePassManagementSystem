@@ -1,0 +1,46 @@
+﻿  SqlConnection con = new SqlConnection("Data Source=(localdb)\\ProjectModels; Database=MinorProject; Integrated Security=SSPI");
+            DataSet d = new DataSet();
+            SqlCommand cmd;
+            
+            //            cmd = new SqlCommand("select college.name ,count(departmentid) from department join college on department.collegeid=college.collegeid group by department.collegeid,college.name", con);   
+            for(int i = 54; i < 77; i++)
+            {
+                con.Open();
+                cmd = new SqlCommand("select sem from department where departmentid=" + i, con);
+                
+                int n = int.Parse(cmd.ExecuteScalar().ToString());
+                con.Close();
+                for (int j = 1; j <= n; j++)
+                {
+                    con.Open();
+                    cmd = new SqlCommand("INSERT INTO [dbo].[classes] ([departmentid], [sem], [division]) VALUES ("+i+","+j+",1)",con);
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+           
+            /*            SqlDataAdapter sdr = new SqlDataAdapter(cmd);
+                        sdr.Fill(d);
+                        con.Close();
+                        td.DataSource = d;
+                        td.DataBind();
+              */
+        }
+
+
+                    cmd = new SqlCommand("select college.name,department.name,department.sem,college..sem,division from classes join department on classes.departmentid=department.departmentid join college on department.collegeid=college.collegeid", con);   
+
+
+
+
+                     con.Open();
+                    cmd = new SqlCommand("select class,sem,course,collegename from student s join college c on s.college = c.Id where s.sid =" + Request.Cookies["Username"].Value + "", con);
+                    DataSet ds = new DataSet();
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    sda.Fill(ds);
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        college.Text = ds.Tables[0].Rows[0][3].ToString();
+                        course.Text = ds.Tables[0].Rows[0][2].ToString();
+                        sem.Text = ds.Tables[0].Rows[0][1].ToString();
+                    }

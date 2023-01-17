@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<path>
+		
+	</path>
+<strings>
+	<connectionstring code="Data Source=(localdb)\\ProjectModels; Database=MinorProject; Integrated Security=SSPI">Data Source=(localdb)\\ProjectModels; Database=MinorProject; Integrated Security=SSPI</connectionstring>
+</strings>
+	<reasons>
+		<reason code="Not Selected"></reason>
+		<reason code="Home"></reason>
+		<reason code="Sickness"></reason>
+		<reason code="Lunch"></reason>
+		<reason code="Meeting"></reason>
+		<reason code="Stationary"></reason>
+
+</reasons>
+</data>
